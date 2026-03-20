@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-red: #8b0000;
+  --color-dark-teal: #002b36;
+  --color-premium-gold: #d4af37;
+}
+
+body {
+  @apply bg-dark-teal text-white font-sans;
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/10;
+}
+
+.btn-primary {
+  @apply bg-dark-red hover:bg-red-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-red-900/20;
+}
