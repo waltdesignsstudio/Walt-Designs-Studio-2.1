@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Globe, FileText, Layout, Image as ImageIcon, Sparkles, Calendar, PartyPopper, X, Star, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { GoogleGenAI } from "@google/genai";
 
 export default function Home() {
@@ -141,21 +140,21 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
-                <Link 
-                  to="/services" 
+                <a 
+                  href="/services" 
                   className="group relative px-10 py-5 bg-premium-gold text-black font-black rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-premium-gold/20"
                 >
                   <span className="relative z-10 flex items-center gap-3 text-xl uppercase tracking-widest">
                     Explore Services <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                </Link>
-                <Link 
-                  to="/contact" 
+                </a>
+                <a 
+                  href="/contact" 
                   className="text-white font-bold uppercase tracking-widest hover:text-premium-gold transition-colors border-b-2 border-white/20 hover:border-premium-gold py-2"
                 >
                   Contact Founder
-                </Link>
+                </a>
               </div>
             </motion.div>
           </div>
@@ -270,10 +269,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-premium-gold opacity-5 blur-[120px]"></div>
           <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
             <h2 className="text-5xl md:text-7xl font-black text-white mb-12 uppercase tracking-tighter">Ready to Create Impact?</h2>
-            <Link to="/contact" className="group relative inline-flex items-center gap-4 px-16 py-8 bg-white text-black font-black rounded-full hover:bg-premium-gold transition-all hover:scale-105 active:scale-95 shadow-2xl">
+            <a href="/contact" className="group relative inline-flex items-center gap-4 px-16 py-8 bg-white text-black font-black rounded-full hover:bg-premium-gold transition-all hover:scale-105 active:scale-95 shadow-2xl">
               <span className="text-2xl uppercase tracking-widest">Start Project</span>
               <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
-            </Link>
+            </a>
           </div>
         </section>
       </div>
