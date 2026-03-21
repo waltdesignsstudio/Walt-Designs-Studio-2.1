@@ -32,7 +32,7 @@ export default function About() {
   ];
 
   return (
-    <div className="bg-[#004d00] min-h-screen relative overflow-hidden">
+    <div className="bg-navy-dark min-h-screen relative overflow-hidden">
       {/* Floating Decorative Elements */}
       <motion.div 
         animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}

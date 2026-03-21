@@ -4,10 +4,11 @@
   --color-dark-red: #8b0000;
   --color-dark-teal: #002b36;
   --color-premium-gold: #d4af37;
+  --color-navy-dark: #000033;
 }
 
 body {
-  @apply bg-dark-teal text-white font-sans;
+  @apply bg-navy-dark text-white font-sans;
 }
 
 .glass-card {

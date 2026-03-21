@@ -39,7 +39,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="py-24 bg-[#8b0000] min-h-screen relative overflow-hidden">
+    <div className="py-24 bg-navy-dark min-h-screen relative overflow-hidden">
       {/* World Map Background */}
       <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
         <img 

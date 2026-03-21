@@ -78,8 +78,8 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "Rajesh Kumar",
-      role: "CEO, TechFlow",
+      name: "Ranjan Kumar",
+      role: "Owner Mithila catering & Decoration Services",
       content: "Walt Designs transformed our online presence. The optimized design is incredibly fast and intuitive.",
       rating: 5
     },
@@ -98,7 +98,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="overflow-hidden bg-[#2a0000]">
+    <div className="overflow-hidden bg-navy-dark">
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col pt-0">
         {/* Marquee in Hero */}
@@ -107,14 +107,14 @@ export default function Home() {
             <div className="flex shrink-0 items-center">
               {[...Array(10)].map((_, i) => (
                 <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
-                  ✨ Web Designing at Rs.3999/- only ✨
+                  ✨ Get AI optimized website for business just at Rs.3999+30% off ✨
                 </span>
               ))}
             </div>
             <div className="flex shrink-0 items-center">
               {[...Array(10)].map((_, i) => (
                 <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
-                  ✨ Web Designing at Rs.3999/- only ✨
+                  ✨ Get AI optimized website for business just at Rs.3999+30% off ✨
                 </span>
               ))}
             </div>
@@ -123,7 +123,7 @@ export default function Home() {
 
         <div className="flex-1 flex flex-col relative">
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#2a0000] via-[#2a0000]/80 to-[#2a0000]"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-navy-dark via-navy-dark/80 to-navy-dark"></div>
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#d4af37 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
           </div>
 
@@ -166,8 +166,8 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="mb-8 inline-block"
               >
-                <div className="bg-gradient-to-r from-premium-gold to-yellow-500 text-black px-6 py-2 rounded-full font-black uppercase tracking-widest text-sm shadow-xl animate-pulse">
-                  Get a website just at Rs.3999/- + 30% off
+                <div className="bg-gradient-to-r from-premium-gold via-white to-premium-gold text-black px-8 py-3 rounded-full font-black uppercase tracking-widest text-sm shadow-[0_0_30px_rgba(212,175,55,0.5)] animate-shimmer bg-[length:200%_auto]">
+                  Get AI optimized website for business just at Rs.3999+30% off
                 </div>
               </motion.div>
 
@@ -204,7 +204,7 @@ export default function Home() {
       </section>
 
       {/* Content Wrapper */}
-      <div className="bg-[#1a0000]">
+      <div className="bg-navy-dark">
         {/* Quick Services Section */}
         <section className="py-32 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -225,7 +225,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.2 }}
                   onClick={() => openEnquiryModal(f.title)}
-                  className="group relative bg-[#2a0000] border border-white/5 p-10 rounded-[2.5rem] cursor-pointer hover:border-premium-gold/30 transition-all duration-500 overflow-hidden"
+                  className="group relative bg-navy-dark border border-white/5 p-10 rounded-[2.5rem] cursor-pointer hover:border-premium-gold/30 transition-all duration-500 overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
                     <Star size={120} className="text-premium-gold" />
@@ -257,7 +257,7 @@ export default function Home() {
         </section>
 
         {/* AI Project Planner Section */}
-        <section className="py-32 relative overflow-hidden bg-[#1a0000]">
+        <section className="py-32 relative overflow-hidden bg-navy-dark">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">AI Project <span className="text-premium-gold">Planner</span></h2>
@@ -304,7 +304,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-32 bg-[#1a0000] relative overflow-hidden">
+        <section className="py-32 bg-navy-dark relative overflow-hidden">
           <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#d4af37 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-20">
@@ -320,7 +320,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="bg-[#2a0000] border border-white/5 p-8 rounded-[2rem] hover:border-premium-gold/20 transition-all group"
+                  className="bg-navy-dark border border-white/5 p-8 rounded-[2rem] hover:border-premium-gold/20 transition-all group"
                 >
                   <div className="flex gap-1 mb-6">
                     {[...Array(t.rating)].map((_, i) => (
@@ -437,6 +437,13 @@ export default function Home() {
         }
         .animate-marquee-normal {
           animation: marquee-normal 20s linear infinite;
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .animate-shimmer {
+          animation: shimmer 3s linear infinite;
         }
         @keyframes purple-magenta-pulse {
           0%, 100% { background-color: #2d004d; }
