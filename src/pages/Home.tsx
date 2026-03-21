@@ -1,65 +1,51 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Globe, FileText, Layout, Image as ImageIcon, Sparkles, Calendar, PartyPopper, X, Star, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Globe, FileText, Layout, Image as ImageIcon, Star, Calendar, PartyPopper, X, CheckCircle2, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import { GoogleGenAI } from "@google/genai";
+import ReactMarkdown from 'react-markdown';
 
 export default function Home() {
-  const [plannerInput, setPlannerInput] = useState('');
-  const [aiPlan, setAiPlan] = useState('');
-  const [isPlanning, setIsPlanning] = useState(false);
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [plannerInput, setPlannerInput] = useState('');
+  const [plannerResult, setPlannerResult] = useState<string | null>(null);
+  const [isPlanning, setIsPlanning] = useState(false);
+
+  const handlePlan = async () => {
+    if (!plannerInput.trim()) return;
+    setIsPlanning(true);
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: `Act as a professional design consultant for "Walt Designs & Studio". 
+        Create a detailed project plan for the following request: "${plannerInput}".
+        Include:
+        1. Project Overview
+        2. Suggested Design Style
+        3. Key Deliverables
+        4. Estimated Timeline
+        5. Estimated Budget Range (in INR)
+        Format the response in clean Markdown.`,
+      });
+      setPlannerResult(response.text);
+    } catch (error) {
+      console.error("Planning error:", error);
+      setPlannerResult("Sorry, I encountered an error while planning your project. Please try again later.");
+    } finally {
+      setIsPlanning(false);
+    }
+  };
 
   const openEnquiryModal = (serviceTitle: string) => {
     setSelectedService(serviceTitle);
     setIsModalOpen(true);
   };
 
-  const handleAIPlan = async () => {
-    if (!plannerInput.trim() || isPlanning) return;
-    setIsPlanning(true);
-    try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || "AIzaSyAYcAdYrGPJpluc86K7HWZ2hVw1IKySvWY";
-      if (!apiKey) {
-        throw new Error("Gemini API Key is missing. Please ensure it's set in your environment variables.");
-      }
-
-      const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: `You are an expert project planner for "Walt Designs & Studio". 
-        Create a detailed step-by-step digital project plan for: "${plannerInput}". 
-        Include sections for: Strategy, Design, Development, and Launch.
-        Be professional, structured, and helpful.`,
-      });
-      
-      const text = response.text;
-      if (!text) {
-        throw new Error("The AI was unable to generate a plan for this input. Please try a more detailed description.");
-      }
-      
-      setAiPlan(text);
-    } catch (error: any) {
-      console.error("AI Planner Error:", error);
-      let errorMessage = "An unexpected error occurred. Please try again later.";
-      
-      if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
-        errorMessage = "The AI is currently busy (Rate Limit Reached). Please wait a minute and try again.";
-      } else if (error.message?.includes("API_KEY_INVALID")) {
-        errorMessage = "Invalid API Key. Please check your Gemini API key configuration.";
-      } else if (error.message) {
-        errorMessage = error.message;
-      }
-      
-      setAiPlan(`Error: ${errorMessage}`);
-    }
-    setIsPlanning(false);
-  };
-
   const features = [
     {
-      title: "AI Optimized Web Design",
-      desc: "Websites built with the latest AI tech for speed and conversion.",
+      title: "Optimized Web Design",
+      desc: "Websites built with the latest technologies for speed and conversion.",
       icon: <Globe className="text-premium-gold" />,
       img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
     },
@@ -81,7 +67,7 @@ export default function Home() {
     {
       name: "Rajesh Kumar",
       role: "CEO, TechFlow",
-      content: "Walt Designs transformed our online presence. The AI-optimized design is incredibly fast and intuitive.",
+      content: "Walt Designs transformed our online presence. The optimized design is incredibly fast and intuitive.",
       rating: 5
     },
     {
@@ -179,7 +165,7 @@ export default function Home() {
               </h1>
 
               <p className="text-lg sm:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl mx-auto md:mx-0 font-medium">
-                Walt Designs & Studio specializes in AI-optimized web solutions, premium branding, and professional documentation. We don't just design; we create impact.
+                Walt Designs & Studio specializes in optimized web solutions, premium branding, and professional documentation. We don't just design; we create impact.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
@@ -212,7 +198,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
               <div className="max-w-2xl">
                 <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">Our Core Expertise</h2>
-                <p className="text-white/40 text-lg uppercase tracking-widest font-bold">Crafting digital excellence with AI precision</p>
+                <p className="text-white/40 text-lg uppercase tracking-widest font-bold">Crafting digital excellence with modern precision</p>
               </div>
               <div className="h-px flex-grow bg-white/10 mb-4 hidden md:block"></div>
             </div>
@@ -229,7 +215,7 @@ export default function Home() {
                   className="group relative bg-[#2a0000] border border-white/5 p-10 rounded-[2.5rem] cursor-pointer hover:border-premium-gold/30 transition-all duration-500 overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
-                    <Sparkles size={120} className="text-premium-gold" />
+                    <Star size={120} className="text-premium-gold" />
                   </div>
                   
                   <div className="mb-10 p-4 bg-white/5 rounded-2xl w-fit group-hover:bg-premium-gold group-hover:text-black transition-all duration-500">
@@ -258,47 +244,44 @@ export default function Home() {
         </section>
 
         {/* AI Project Planner Section */}
-        <section className="py-32 border-t border-white/5 bg-[#0d0000]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#1a0000] p-12 rounded-[3rem] border border-white/5 shadow-2xl">
-              <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
-                <div className="p-5 bg-premium-gold rounded-[2rem] text-black shadow-xl shadow-premium-gold/20">
-                  <Calendar size={40} />
-                </div>
-                <div className="text-center md:text-left">
-                  <h2 className="text-4xl font-black text-white uppercase tracking-tight mb-2">AI Project Planner</h2>
-                  <p className="text-white/40 font-bold uppercase tracking-widest text-sm">Architect your vision with intelligence</p>
-                </div>
-              </div>
+        <section className="py-32 relative overflow-hidden bg-[#1a0000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">AI Project <span className="text-premium-gold">Planner</span></h2>
+              <p className="text-white/40 text-lg uppercase tracking-widest font-bold">Get a detailed design roadmap in seconds</p>
+            </div>
 
-              <div className="space-y-8">
-                <textarea 
-                  value={plannerInput}
-                  onChange={(e) => setPlannerInput(e.target.value)}
-                  placeholder="Describe your project vision..."
-                  className="w-full bg-white/5 border-2 border-white/10 rounded-3xl px-8 py-6 text-white focus:outline-none focus:border-premium-gold transition-all min-h-[160px] text-lg font-medium"
-                />
-                <button 
-                  onClick={handleAIPlan}
-                  disabled={isPlanning}
-                  className="w-full py-6 bg-premium-gold text-black font-black rounded-3xl flex items-center justify-center gap-4 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 text-xl uppercase tracking-widest shadow-xl shadow-premium-gold/20"
-                >
-                  {isPlanning ? <Sparkles className="animate-spin" /> : <Sparkles />}
-                  {isPlanning ? 'Architecting...' : 'Generate Roadmap'}
-                </button>
+            <div className="max-w-4xl mx-auto">
+              <div className="glass-card p-8 md:p-12 bg-black/40 border-premium-gold/20">
+                <div className="mb-8">
+                  <label className="block text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold">What are you looking to build?</label>
+                  <div className="flex flex-col md:flex-row gap-4">
+                    <input 
+                      value={plannerInput}
+                      onChange={(e) => setPlannerInput(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && handlePlan()}
+                      type="text" 
+                      className="flex-grow bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-premium-gold outline-none transition-all" 
+                      placeholder="e.g., A luxury real estate website with a modern dark theme" 
+                    />
+                    <button 
+                      onClick={handlePlan}
+                      disabled={isPlanning}
+                      className="btn-primary flex items-center justify-center gap-3 px-10 py-4 disabled:opacity-50"
+                    >
+                      {isPlanning ? 'Planning...' : 'Generate Plan'} <Sparkles size={20} />
+                    </button>
+                  </div>
+                </div>
 
-                {aiPlan && (
+                {plannerResult && (
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-12 p-10 bg-white/5 rounded-[2rem] border border-white/10"
+                    className="mt-12 p-8 bg-white/5 rounded-3xl border border-white/10"
                   >
-                    <div className="flex items-center gap-3 mb-6 text-premium-gold font-black uppercase tracking-widest text-sm">
-                      <Layout size={20} />
-                      AI Generated Strategy
-                    </div>
-                    <div className="text-white/80 leading-relaxed whitespace-pre-wrap prose prose-invert max-w-none font-medium">
-                      {aiPlan}
+                    <div className="markdown-body">
+                      <ReactMarkdown>{plannerResult}</ReactMarkdown>
                     </div>
                   </motion.div>
                 )}
@@ -384,7 +367,7 @@ export default function Home() {
 
               <div className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
-                  <Sparkles className="text-premium-gold" size={24} />
+                  <Star className="text-premium-gold" size={24} />
                   <h2 className="text-2xl font-bold text-white">Service Enquiry</h2>
                 </div>
                 <p className="text-gray-400 text-sm">Fill in the details below and we'll get back to you.</p>

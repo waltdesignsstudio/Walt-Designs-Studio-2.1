@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Globe, FileText, Layout, Image as ImageIcon, CheckCircle, Sparkles, ArrowRight, X, PartyPopper } from 'lucide-react';
+import { Globe, FileText, Layout, Image as ImageIcon, CheckCircle, Star, ArrowRight, X, PartyPopper } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Services() {
@@ -13,9 +13,9 @@ export default function Services() {
 
   const services = [
     {
-      title: "AI Optimized Web Design",
-      desc: "We create cutting-edge websites that are AI-optimized for performance, SEO, and user experience. Every site is published with a custom domain to ensure your professional identity.",
-      features: ["AI Performance Tuning", "Custom Domain Publishing", "Responsive Layouts", "SEO Optimization"],
+      title: "Optimized Web Design",
+      desc: "We create cutting-edge websites that are optimized for performance, SEO, and user experience. Every site is published with a custom domain to ensure your professional identity.",
+      features: ["Performance Tuning", "Custom Domain Publishing", "Responsive Layouts", "SEO Optimization"],
       icon: <Globe className="text-black" size={32} />,
       img: "https://i.ibb.co/5gYNVxVq/web-design-technology-browsing-programming-concept-53876-163260.avif"
     },
@@ -107,7 +107,7 @@ export default function Services() {
           ))}
         </div>
 
-        {/* Detailed AI Section */}
+        {/* Detailed Web Design Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -115,17 +115,17 @@ export default function Services() {
           className="glass-card p-10 md:p-16 bg-white/30 backdrop-blur-lg border-white/40 relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 p-8 opacity-10">
-            <Sparkles size={120} className="text-black" />
+            <Globe size={120} className="text-black" />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <Sparkles className="text-black" size={32} />
-                <h2 className="text-3xl md:text-4xl font-bold text-black">AI Optimized <span className="text-white drop-shadow-md">Web Design</span></h2>
+                <Globe className="text-black" size={32} />
+                <h2 className="text-3xl md:text-4xl font-bold text-black">Optimized <span className="text-white drop-shadow-md">Web Design</span></h2>
               </div>
               <p className="text-black/80 text-lg mb-8 leading-relaxed font-medium">
-                Our AI-optimized web design service goes beyond traditional development. We integrate advanced machine learning models to analyze user behavior, optimize conversion paths, and ensure lightning-fast performance.
+                Our optimized web design service goes beyond traditional development. We integrate advanced technologies to analyze user behavior, optimize conversion paths, and ensure lightning-fast performance.
               </p>
               <div className="space-y-4 mb-10">
                 <div className="flex items-start gap-4">
@@ -133,7 +133,7 @@ export default function Services() {
                     <CheckCircle size={16} className="text-black" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-black">Predictive UX Design</h4>
+                    <h4 className="font-bold text-black">User-Centric UX Design</h4>
                     <p className="text-black/60 text-sm font-medium">Interfaces that adapt to user needs before they even click.</p>
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export default function Services() {
                     <CheckCircle size={16} className="text-black" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-black">Automated SEO Engine</h4>
+                    <h4 className="font-bold text-black">Advanced SEO Engine</h4>
                     <p className="text-black/60 text-sm font-medium">Real-time content optimization for search engine dominance.</p>
                   </div>
                 </div>
@@ -152,12 +152,12 @@ export default function Services() {
                   </div>
                   <div>
                     <h4 className="font-bold text-black">Dynamic Asset Compression</h4>
-                    <p className="text-black/60 text-sm font-medium">AI-driven media optimization for sub-second load times.</p>
+                    <p className="text-black/60 text-sm font-medium">Media optimization for sub-second load times.</p>
                   </div>
                 </div>
               </div>
               <button 
-                onClick={() => openEnquiryModal("AI Optimized Web Design")}
+                onClick={() => openEnquiryModal("Optimized Web Design")}
                 className="bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3"
               >
                 Get a Free Consultation <ArrowRight size={20} />
@@ -167,7 +167,7 @@ export default function Services() {
               <div className="absolute -inset-4 bg-white/20 blur-3xl rounded-full animate-pulse"></div>
               <img 
                 src="https://i.ibb.co/5gYNVxVq/web-design-technology-browsing-programming-concept-53876-163260.avif" 
-                alt="AI Web Design" 
+                alt="Web Design" 
                 className="relative z-10 rounded-2xl shadow-2xl border border-white/30"
                 referrerPolicy="no-referrer"
               />
@@ -200,7 +200,7 @@ export default function Services() {
 
               <div className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
-                  <Sparkles className="text-premium-gold" size={24} />
+                  <Star className="text-premium-gold" size={24} />
                   <h2 className="text-2xl font-bold text-white">Service Enquiry</h2>
                 </div>
                 <p className="text-gray-400 text-sm">Fill in the details below and we'll get back to you.</p>

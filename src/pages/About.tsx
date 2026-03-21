@@ -5,13 +5,13 @@ export default function About() {
   const stats = [
     { label: "Projects Completed", value: "150+", icon: <Globe size={20} /> },
     { label: "Happy Clients", value: "50+", icon: <Users size={20} /> },
-    { label: "AI Models Used", value: "10+", icon: <Cpu size={20} /> }
+    { label: "Modern Technologies", value: "10+", icon: <Cpu size={20} /> }
   ];
 
   const values = [
     {
       title: "Innovation First",
-      desc: "We leverage the latest AI technologies to give our clients a competitive edge.",
+      desc: "We leverage the latest technologies to give our clients a competitive edge.",
       icon: <Zap className="text-premium-gold" />
     },
     {
@@ -62,7 +62,7 @@ export default function About() {
                 Founded by <span className="text-white font-bold">Priyanshu Kumar</span>, Walt Designs & Studio is a New Delhi-based creative powerhouse dedicated to redefining digital standards.
               </p>
               <p className="text-gray-400 leading-relaxed mb-16">
-                We believe that great design is a blend of art and technology. In an era dominated by AI, we harness its power to create websites that aren't just beautiful, but are optimized for the future of the web.
+                We believe that great design is a blend of art and technology. We harness the latest tools to create websites that aren't just beautiful, but are optimized for the future of the web.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

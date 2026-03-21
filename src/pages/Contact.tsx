@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, User, Building, Send, Sparkles, Globe } from 'lucide-react';
+import { Phone, Mail, MapPin, User, Building, Send, Star, Globe } from 'lucide-react';
 import { useState, FormEvent } from 'react';
 
 export default function Contact() {
@@ -62,7 +62,7 @@ export default function Contact() {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block mb-4 p-2 bg-premium-gold/20 rounded-full"
           >
-            <Sparkles className="text-premium-gold" size={24} />
+            <Star className="text-premium-gold" size={24} />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}

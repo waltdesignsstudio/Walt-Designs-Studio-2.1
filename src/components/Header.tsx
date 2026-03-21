@@ -1,15 +1,12 @@
-import { Menu, X, Search, Sparkles, Globe, ArrowRight } from 'lucide-react';
+import { Menu, X, Search, Globe, ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import { GoogleGenAI } from "@google/genai";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [aiResponse, setAiResponse] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -20,10 +17,10 @@ export default function Header() {
 
   const siteContent = [
     { title: 'Home', path: '/', description: 'Welcome to Walt Designs & Studio. We create premium digital experiences.' },
-    { title: 'Services', path: '/services', description: 'AI Optimized Web Design, Resume/CV, License Forms, Thumbnails & Postures.' },
+    { title: 'Services', path: '/services', description: 'Optimized Web Design, Resume/CV, License Forms, Thumbnails & Postures.' },
     { title: 'Contact Us', path: '/contact', description: 'Get in touch with founder Priyanshu Kumar. Enquiry form and contact details.' },
     { title: 'About Us', path: '/about', description: 'Learn about Walt Designs & Studio and our mission to elevate digital presence.' },
-    { title: 'Web Design', path: '/services', description: 'AI optimized web designing and publishing with custom domains.' },
+    { title: 'Web Design', path: '/services', description: 'Optimized web designing and publishing with custom domains.' },
     { title: 'Resume/CV', path: '/services', description: 'Professional ATS-friendly resume and CV design services.' },
   ];
 
@@ -33,80 +30,9 @@ export default function Header() {
     }
   }, [isSearchOpen]);
 
-  // AI Suggestion as you type
-  useEffect(() => {
-    // Only trigger if search is open, query is at least 3 characters, and not already searching
-    if (!isSearchOpen || searchQuery.trim().length < 3) {
-      setAiResponse('');
-      return;
-    }
-
-    if (debounceTimer.current) clearTimeout(debounceTimer.current);
-
-    debounceTimer.current = setTimeout(async () => {
-      setIsSearching(true);
-      try {
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || "AIzaSyAYcAdYrGPJpluc86K7HWZ2hVw1IKySvWY";
-        if (!apiKey) {
-          throw new Error("API Key missing");
-        }
-
-        const ai = new GoogleGenAI({ apiKey });
-        const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
-          contents: `You are an assistant for "Walt Designs & Studio". 
-          The company provides: AI Optimized Web Design (Rs. 3999/- with domain), Resume/CV creation, License & Register forms, Thumbnails & Postures.
-          Founder: Priyanshu Kumar. Location: New Delhi, India.
-          Provide a very brief (1-2 sentences) suggestion or answer for the user's current search query: "${searchQuery}"`,
-        });
-        setAiResponse(response.text || "");
-      } catch (error: any) {
-        console.error("AI Suggestion Error:", error);
-        // Don't show error for background suggestions to avoid annoying the user
-        if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
-          setAiResponse(""); // Just clear it if quota hit
-        }
-      } finally {
-        setIsSearching(false);
-      }
-    }, 1500); // Increased debounce to 1500ms to save quota
-
-    return () => {
-      if (debounceTimer.current) clearTimeout(debounceTimer.current);
-    };
-  }, [searchQuery, isSearchOpen]);
-
-  const handleSearch = async (e: FormEvent) => {
+  const handleSearch = (e: FormEvent) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
-
-    setIsSearching(true);
-    try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("Gemini API Key is missing.");
-      }
-
-      const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: `You are an assistant for "Walt Designs & Studio". 
-        The company provides: AI Optimized Web Design (Rs. 3999/- with domain), Resume/CV creation, License & Register forms, Thumbnails & Postures.
-        Founder: Priyanshu Kumar. Location: New Delhi, India.
-        User question: ${searchQuery}`,
-      });
-      setAiResponse(response.text || "I couldn't find an answer to that.");
-    } catch (error: any) {
-      console.error("AI Search Error:", error);
-      let errorMessage = "I encountered an error while searching with AI.";
-      if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
-        errorMessage = "AI search is temporarily unavailable due to high usage. Please try again in a minute.";
-      } else if (error.message) {
-        errorMessage = error.message;
-      }
-      setAiResponse(`Error: ${errorMessage}`);
-    }
-    setIsSearching(false);
+    // Local search is handled by the normalResults filter
   };
 
   const normalResults = searchQuery.trim() 
@@ -208,7 +134,6 @@ export default function Header() {
                 onClick={() => {
                   setIsSearchOpen(false);
                   setSearchQuery('');
-                  setAiResponse('');
                 }}
                 className="text-white/60 hover:text-white p-2"
               >
@@ -222,7 +147,7 @@ export default function Header() {
                 type="text" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search services, pages, or ask AI anything..."
+                placeholder="Search services, pages, or ask anything..."
                 className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-5 text-xl text-white focus:outline-none focus:border-premium-gold transition-all pr-16"
               />
               <button 
@@ -234,25 +159,6 @@ export default function Header() {
             </form>
 
             <div className="space-y-6">
-              {isSearching && (
-                <div className="flex items-center gap-3 py-4 text-premium-gold animate-pulse">
-                  <Sparkles size={18} className="animate-spin" />
-                  <span className="text-sm font-bold uppercase tracking-widest">AI is thinking...</span>
-                </div>
-              )}
-
-              {aiResponse && (
-                <div className="glass-card p-8 animate-in fade-in slide-in-from-bottom-4 duration-500 border-premium-gold/30">
-                  <div className="flex items-center gap-3 mb-4 text-premium-gold">
-                    <Sparkles size={20} />
-                    <span className="font-bold uppercase tracking-widest text-sm">AI Response</span>
-                  </div>
-                  <div className="text-gray-200 leading-relaxed whitespace-pre-wrap text-lg">
-                    {aiResponse}
-                  </div>
-                </div>
-              )}
-
               {searchQuery && (
                 <div className="space-y-4">
                   <p className="text-white/40 uppercase tracking-widest text-xs font-bold mb-4">Quick Links ({normalResults.length})</p>
@@ -265,7 +171,7 @@ export default function Header() {
                       <h3 className="text-xl font-bold mb-2 group-hover:text-premium-gold transition-colors">{result.title}</h3>
                       <p className="text-gray-400 text-sm">{result.description}</p>
                     </a>
-                  )) : !isSearching && !aiResponse && (
+                  )) : (
                     <div className="text-center py-12 text-white/40 italic">
                       No matching pages found for "{searchQuery}"
                     </div>

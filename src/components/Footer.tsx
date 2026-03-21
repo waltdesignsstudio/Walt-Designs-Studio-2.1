@@ -21,7 +21,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed font-medium">
-              Premium design solutions tailored for the modern era. From AI-optimized websites to professional branding.
+              Premium design solutions tailored for the modern era. From optimized websites to professional branding.
             </p>
           </div>
 

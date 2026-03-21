@@ -17,3 +17,19 @@ body {
 .btn-primary {
   @apply bg-dark-red hover:bg-red-900 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-red-900/20;
 }
+
+.markdown-body {
+  @apply text-white/80 leading-relaxed;
+}
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  @apply text-white font-bold mb-4 mt-6;
+}
+.markdown-body p {
+  @apply mb-4;
+}
+.markdown-body ul {
+  @apply list-disc list-inside mb-4;
+}
+.markdown-body strong {
+  @apply text-premium-gold;
+}
