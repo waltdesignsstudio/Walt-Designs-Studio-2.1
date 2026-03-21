@@ -13,9 +13,17 @@ export default function Home() {
 
   const handlePlan = async () => {
     if (!plannerInput.trim()) return;
+    
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey || apiKey === 'undefined' || apiKey === 'MY_GEMINI_API_KEY') {
+      setPlannerResult("### Configuration Error\n\n**GEMINI_API_KEY is missing or not set.**\n\nTo fix this:\n1. Open the **Secrets** panel in the AI Studio UI.\n2. Add a new secret with the key `GEMINI_API_KEY` and your actual Gemini API key as the value.\n3. Refresh the page and try again.");
+      return;
+    }
+
     setIsPlanning(true);
+    setPlannerResult(null);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: `Act as a professional design consultant for "Walt Designs & Studio". 
@@ -28,10 +36,15 @@ export default function Home() {
         5. Estimated Budget Range (in INR)
         Format the response in clean Markdown.`,
       });
-      setPlannerResult(response.text);
-    } catch (error) {
-      console.error("Planning error:", error);
-      setPlannerResult("Sorry, I encountered an error while planning your project. Please try again later.");
+      
+      if (response.text) {
+        setPlannerResult(response.text);
+      } else {
+        throw new Error("Empty response from AI");
+      }
+    } catch (error: any) {
+      console.error("Planning error details:", error);
+      setPlannerResult(`### Planning Error\n\nI encountered an error while planning your project: \n\n\`${error.message || "Unknown error"}\`\n\nPlease check your API key and network connection, then try again.`);
     } finally {
       setIsPlanning(false);
     }
