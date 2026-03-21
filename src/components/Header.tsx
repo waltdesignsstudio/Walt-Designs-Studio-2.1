@@ -45,7 +45,12 @@ export default function Header() {
     debounceTimer.current = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+        if (!apiKey) {
+          throw new Error("API Key missing");
+        }
+
+        const ai = new GoogleGenAI({ apiKey });
         const response = await ai.models.generateContent({
           model: "gemini-3-flash-preview",
           contents: `You are an assistant for "Walt Designs & Studio". 
@@ -72,7 +77,12 @@ export default function Header() {
 
     setIsSearching(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("Gemini API Key is missing.");
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: `You are an assistant for "Walt Designs & Studio". 
@@ -81,9 +91,9 @@ export default function Header() {
         User question: ${searchQuery}`,
       });
       setAiResponse(response.text || "I couldn't find an answer to that.");
-    } catch (error) {
+    } catch (error: any) {
       console.error("AI Search Error:", error);
-      setAiResponse("Sorry, I encountered an error while searching with AI.");
+      setAiResponse(`Error: ${error.message || "I encountered an error while searching with AI."}`);
     }
     setIsSearching(false);
   };

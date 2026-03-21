@@ -19,17 +19,27 @@ export default function Home() {
     if (!plannerInput.trim()) return;
     setIsPlanning(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("Gemini API Key is missing. Please ensure it's set in your environment variables.");
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: `You are an expert project planner for "Walt Designs & Studio". 
         Create a detailed step-by-step digital project plan for: "${plannerInput}". 
         Be professional, structured, and helpful.`,
       });
-      setAiPlan(response.text || "I couldn't generate a plan right now.");
-    } catch (error) {
+      
+      if (!response.text) {
+        throw new Error("No response received from AI.");
+      }
+      
+      setAiPlan(response.text);
+    } catch (error: any) {
       console.error("AI Planner Error:", error);
-      setAiPlan("Error generating plan. Please try again.");
+      setAiPlan(`Error generating plan: ${error.message || "Please try again."}`);
     }
     setIsPlanning(false);
   };
