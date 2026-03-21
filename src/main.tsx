@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import './index.css';
 
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')!).render(
       <main className="flex-grow">
         <Home />
       </main>
+      <ScrollToTop />
       <Footer />
     </div>
   </StrictMode>,

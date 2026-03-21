@@ -76,44 +76,23 @@ export default function Home() {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Ranjan Kumar",
-      role: "Owner Mithila catering & Decoration Services",
-      content: "Walt Designs transformed our online presence. The optimized design is incredibly fast and intuitive.",
-      rating: 5
-    },
-    {
-      name: "Priya Sharma",
-      role: "Marketing Director, Bloom",
-      content: "The branding assets are top-notch. Our social media engagement has doubled since we started working with them.",
-      rating: 5
-    },
-    {
-      name: "Ankit Verma",
-      role: "Freelance Developer",
-      content: "The ATS-friendly resume I got from Walt Designs helped me land my dream job at a top tech firm. Highly recommended!",
-      rating: 5
-    }
-  ];
-
   return (
     <div className="overflow-hidden bg-navy-dark">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col pt-0">
+      <section className="relative flex flex-col pt-0">
         {/* Marquee in Hero */}
-        <div className="bg-[#FFFF00] text-[#8B0000] py-3 overflow-hidden whitespace-nowrap relative z-[40] border-b-2 border-black/20 shadow-inner">
-          <div className="flex animate-marquee-normal">
-            <div className="flex shrink-0 items-center">
-              {[...Array(10)].map((_, i) => (
-                <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
+        <div className="bg-[#FFFF00] text-[#8B0000] py-1.5 overflow-hidden whitespace-nowrap relative z-[40] border-b-2 border-black/20 shadow-inner">
+          <div className="flex animate-marquee-slow hover:[animation-play-state:paused] w-max will-change-transform">
+            <div className="flex shrink-0 items-center min-w-full">
+              {[...Array(8)].map((_, i) => (
+                <span key={i} className="mx-4 sm:mx-10 font-black uppercase tracking-tighter text-xs sm:text-base italic drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
                   ✨ Get AI optimized website for business just at Rs.3999+30% off ✨
                 </span>
               ))}
             </div>
-            <div className="flex shrink-0 items-center">
-              {[...Array(10)].map((_, i) => (
-                <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
+            <div className="flex shrink-0 items-center min-w-full">
+              {[...Array(8)].map((_, i) => (
+                <span key={i} className="mx-4 sm:mx-10 font-black uppercase tracking-tighter text-xs sm:text-base italic drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
                   ✨ Get AI optimized website for business just at Rs.3999+30% off ✨
                 </span>
               ))}
@@ -131,92 +110,156 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 py-4 text-center relative overflow-hidden border-b border-white/10 z-20"
+            className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 py-2 text-center relative overflow-hidden border-b border-white/10 z-20"
           >
             <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-            <div className="relative z-10 flex items-center justify-center gap-4">
-              <PartyPopper className="text-yellow-400 animate-bounce" size={20} />
-              <h2 className="text-white font-black uppercase tracking-[0.2em] text-xs sm:text-sm italic drop-shadow-lg">
+            <div className="relative z-10 flex items-center justify-center gap-2">
+              <PartyPopper className="text-yellow-400 animate-bounce" size={14} />
+              <h2 className="text-white font-black uppercase tracking-[0.15em] text-[9px] sm:text-xs italic drop-shadow-lg">
                 ✨ Happy Navratri to All Our Valued Clients! ✨
               </h2>
-              <PartyPopper className="text-yellow-400 animate-bounce" size={20} />
+              <PartyPopper className="text-yellow-400 animate-bounce" size={14} />
             </div>
           </motion.div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 pb-20 w-full">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center md:text-left"
-            >
-              {/* Since 2026 Badge */}
-              <div className="flex items-center justify-center md:justify-start gap-2 mb-6">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
-                </span>
-                <span className="text-white/80 text-xs sm:text-sm font-bold tracking-widest uppercase">Since 2026 in business</span>
-              </div>
-
-              {/* Offer Text */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="mb-8 inline-block"
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-4 pb-8 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center lg:text-left"
               >
-                <div className="bg-gradient-to-r from-premium-gold via-white to-premium-gold text-black px-8 py-3 rounded-full font-black uppercase tracking-widest text-sm shadow-[0_0_30px_rgba(212,175,55,0.5)] animate-shimmer bg-[length:200%_auto]">
-                  Get AI optimized website for business just at Rs.3999+30% off
+                {/* Since 2026 Badge */}
+                <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                  </span>
+                  <span className="text-white/80 text-[10px] sm:text-xs font-bold tracking-widest uppercase">Since 2026 in business</span>
+                </div>
+
+                {/* Offer Text */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="mb-6 inline-block"
+                >
+                  <div className="bg-gradient-to-r from-premium-gold via-white to-premium-gold text-black px-6 py-2 rounded-full font-black uppercase tracking-widest text-[10px] sm:text-xs shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-shimmer bg-[length:200%_auto]">
+                    Get AI optimized website for business just at Rs.3999+30% off
+                  </div>
+                </motion.div>
+
+                <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black leading-tight mb-6 text-white tracking-tighter">
+                  Elevate Your <br />
+                  <span className="text-premium-gold drop-shadow-[0_5px_15px_rgba(212,175,55,0.3)]">Digital Presence</span> <br />
+                  With Precision.
+                </h1>
+
+                <p className="text-base sm:text-lg text-white/70 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+                  Walt Designs & Studio specializes in optimized web solutions, premium branding, and professional documentation. We don't just design; we create impact.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                  <a 
+                    href="/services" 
+                    className="group relative px-8 py-4 bg-premium-gold text-black font-black rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-premium-gold/20"
+                  >
+                    <span className="relative z-10 flex items-center gap-2 text-lg uppercase tracking-widest">
+                      Explore Services <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                    </span>
+                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                  </a>
+                  <a 
+                    href="/contact" 
+                    className="text-white font-bold uppercase tracking-widest hover:text-premium-gold transition-colors border-b-2 border-white/20 hover:border-premium-gold py-1 text-sm"
+                  >
+                    Contact Founder
+                  </a>
                 </div>
               </motion.div>
 
-              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black leading-tight mb-8 text-white tracking-tighter animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                Elevate Your <br />
-                <span className="text-premium-gold drop-shadow-[0_5px_15px_rgba(212,175,55,0.3)]">Digital Presence</span> <br />
-                With Precision.
-              </h1>
-
-              <p className="text-lg sm:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl mx-auto md:mx-0 font-medium">
-                Walt Designs & Studio specializes in optimized web solutions, premium branding, and professional documentation. We don't just design; we create impact.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
-                <a 
-                  href="/services" 
-                  className="group relative px-10 py-5 bg-premium-gold text-black font-black rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-premium-gold/20"
-                >
-                  <span className="relative z-10 flex items-center gap-3 text-xl uppercase tracking-widest">
-                    Explore Services <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                </a>
-                <a 
-                  href="/contact" 
-                  className="text-white font-bold uppercase tracking-widest hover:text-premium-gold transition-colors border-b-2 border-white/20 hover:border-premium-gold py-2"
-                >
-                  Contact Founder
-                </a>
-              </div>
-            </motion.div>
+              {/* Desktop World Map Image */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="hidden lg:block relative"
+              >
+                <div className="absolute -inset-4 bg-premium-gold/20 blur-3xl rounded-full animate-pulse"></div>
+                <div className="relative glass-card p-4 border-premium-gold/30 rounded-[2.5rem] overflow-hidden group">
+                  <div className="absolute top-6 left-6 z-10">
+                    <span className="bg-black/80 backdrop-blur-md text-premium-gold px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] border border-premium-gold/30">
+                      Spread through over World
+                    </span>
+                  </div>
+                  <img 
+                    src="https://i.ibb.co/7tpZ1RVB/pngtree-abstract-digital-world-map-featuring-global-network-connections-and-central-globe-image-1689.jpg" 
+                    alt="Spread through over World" 
+                    className="w-full h-auto rounded-[2rem] shadow-2xl group-hover:scale-105 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Grow by Digital Section */}
+      <section className="py-12 bg-navy-dark relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            onClick={() => openEnquiryModal("Digital Growth Strategy")}
+            className="group relative glass-card p-6 md:p-8 border-premium-gold/30 rounded-[2rem] overflow-hidden cursor-pointer hover:border-premium-gold/60 transition-all duration-500"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <Sparkles className="text-premium-gold" size={24} />
+                  <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">
+                    Grow by <span className="text-premium-gold">Digital</span>
+                  </h2>
+                </div>
+                <p className="text-white/70 text-base mb-8 leading-relaxed font-medium">
+                  Harness the power of data visualization and financial insights to scale your business. Our digital-first approach ensures your growth is measurable and sustainable.
+                </p>
+                <button className="bg-premium-gold text-black px-8 py-4 rounded-xl font-black text-lg uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-3 shadow-xl shadow-premium-gold/20">
+                  Enquire Now <ArrowRight size={20} />
+                </button>
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-4 bg-premium-gold/20 blur-3xl rounded-full animate-pulse"></div>
+                <img 
+                  src="https://i.ibb.co/qYbPG51Q/business-growth-concept-data-visualization-financial-chart-rising-against-digital-world-background-i.webp" 
+                  alt="Grow by digital" 
+                  className="relative z-10 w-full h-auto rounded-[1.5rem] shadow-2xl group-hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Content Wrapper */}
       <div className="bg-navy-dark">
         {/* Quick Services Section */}
-        <section className="py-32 relative overflow-hidden">
+        <section className="py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
               <div className="max-w-2xl">
-                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">Our Core Expertise</h2>
-                <p className="text-white/40 text-lg uppercase tracking-widest font-bold">Crafting digital excellence with modern precision</p>
+                <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">Our Core Expertise</h2>
+                <p className="text-white/40 text-sm uppercase tracking-widest font-bold">Crafting digital excellence with modern precision</p>
               </div>
               <div className="h-px flex-grow bg-white/10 mb-4 hidden md:block"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((f, i) => (
                 <motion.div
                   key={i}
@@ -225,19 +268,19 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.2 }}
                   onClick={() => openEnquiryModal(f.title)}
-                  className="group relative bg-navy-dark border border-white/5 p-10 rounded-[2.5rem] cursor-pointer hover:border-premium-gold/30 transition-all duration-500 overflow-hidden"
+                  className="group relative bg-navy-dark border border-white/5 p-8 rounded-[2rem] cursor-pointer hover:border-premium-gold/30 transition-all duration-500 overflow-hidden"
                 >
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
-                    <Star size={120} className="text-premium-gold" />
+                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-20 transition-opacity">
+                    <Star size={80} className="text-premium-gold" />
                   </div>
                   
-                  <div className="mb-10 p-4 bg-white/5 rounded-2xl w-fit group-hover:bg-premium-gold group-hover:text-black transition-all duration-500">
+                  <div className="mb-8 p-3 bg-white/5 rounded-xl w-fit group-hover:bg-premium-gold group-hover:text-black transition-all duration-500">
                     {f.icon}
                   </div>
-                  <h3 className="text-2xl font-black mb-4 text-white uppercase tracking-tight">{f.title}</h3>
-                  <p className="text-white/60 mb-8 text-base leading-relaxed font-medium">{f.desc}</p>
+                  <h3 className="text-xl font-black mb-3 text-white uppercase tracking-tight">{f.title}</h3>
+                  <p className="text-white/60 mb-6 text-sm leading-relaxed font-medium">{f.desc}</p>
                   
-                  <div className="relative overflow-hidden rounded-3xl mb-8 aspect-video">
+                  <div className="relative overflow-hidden rounded-2xl mb-6 aspect-video">
                     <img 
                       src={f.img} 
                       alt={f.title} 
@@ -247,8 +290,8 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2a0000] to-transparent opacity-60"></div>
                   </div>
 
-                  <div className="flex items-center gap-3 text-premium-gold font-black text-sm uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
-                    Enquire Now <ArrowRight size={18} />
+                  <div className="flex items-center gap-2 text-premium-gold font-black text-xs uppercase tracking-[0.2em] group-hover:gap-4 transition-all">
+                    Enquire Now <ArrowRight size={16} />
                   </div>
                 </motion.div>
               ))}
@@ -257,32 +300,32 @@ export default function Home() {
         </section>
 
         {/* AI Project Planner Section */}
-        <section className="py-32 relative overflow-hidden bg-navy-dark">
+        <section className="py-20 relative overflow-hidden bg-navy-dark">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">AI Project <span className="text-premium-gold">Planner</span></h2>
-              <p className="text-white/40 text-lg uppercase tracking-widest font-bold">Get a detailed design roadmap in seconds</p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">AI Project <span className="text-premium-gold">Planner</span></h2>
+              <p className="text-white/40 text-sm uppercase tracking-widest font-bold">Get a detailed design roadmap in seconds</p>
             </div>
 
             <div className="max-w-4xl mx-auto">
-              <div className="glass-card p-8 md:p-12 bg-black/40 border-premium-gold/20">
-                <div className="mb-8">
-                  <label className="block text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold">What are you looking to build?</label>
-                  <div className="flex flex-col md:flex-row gap-4">
+              <div className="glass-card p-6 md:p-10 bg-black/40 border-premium-gold/20">
+                <div className="mb-6">
+                  <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-3 font-bold">What are you looking to build?</label>
+                  <div className="flex flex-col md:flex-row gap-3">
                     <input 
                       value={plannerInput}
                       onChange={(e) => setPlannerInput(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handlePlan()}
                       type="text" 
-                      className="flex-grow bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-premium-gold outline-none transition-all" 
-                      placeholder="e.g., A luxury real estate website with a modern dark theme" 
+                      className="flex-grow bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white focus:border-premium-gold outline-none transition-all text-sm" 
+                      placeholder="e.g., A luxury real estate website..." 
                     />
                     <button 
                       onClick={handlePlan}
                       disabled={isPlanning}
-                      className="btn-primary flex items-center justify-center gap-3 px-10 py-4 disabled:opacity-50"
+                      className="btn-primary flex items-center justify-center gap-2 px-8 py-3 disabled:opacity-50 text-sm"
                     >
-                      {isPlanning ? 'Planning...' : 'Generate Plan'} <Sparkles size={20} />
+                      {isPlanning ? 'Planning...' : 'Generate Plan'} <Sparkles size={18} />
                     </button>
                   </div>
                 </div>
@@ -291,9 +334,9 @@ export default function Home() {
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-12 p-8 bg-white/5 rounded-3xl border border-white/10"
+                    className="mt-8 p-6 bg-white/5 rounded-2xl border border-white/10"
                   >
-                    <div className="markdown-body">
+                    <div className="markdown-body text-sm">
                       <ReactMarkdown>{plannerResult}</ReactMarkdown>
                     </div>
                   </motion.div>
@@ -303,54 +346,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="py-32 bg-navy-dark relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#d4af37 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">What Our Clients Say</h2>
-              <p className="text-premium-gold text-lg uppercase tracking-widest font-bold">Real feedback from real success stories</p>
+        {/* Mobile World Map Image */}
+        <section className="py-12 lg:hidden px-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative glass-card p-3 border-premium-gold/30 rounded-[1.5rem] overflow-hidden"
+          >
+            <div className="absolute top-4 left-4 z-10">
+              <span className="bg-black/80 backdrop-blur-md text-premium-gold px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] border border-premium-gold/30">
+                Spread through over World
+              </span>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((t, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="bg-navy-dark border border-white/5 p-8 rounded-[2rem] hover:border-premium-gold/20 transition-all group"
-                >
-                  <div className="flex gap-1 mb-6">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} size={16} className="fill-premium-gold text-premium-gold" />
-                    ))}
-                  </div>
-                  <p className="text-white/80 text-lg mb-8 italic leading-relaxed">"{t.content}"</p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-premium-gold to-yellow-600 flex items-center justify-center text-black font-black text-xl">
-                      {t.name.charAt(0)}
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold uppercase tracking-tight">{t.name}</h4>
-                      <p className="text-white/40 text-xs uppercase tracking-widest">{t.role}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+            <img 
+              src="https://i.ibb.co/7tpZ1RVB/pngtree-abstract-digital-world-map-featuring-global-network-connections-and-central-globe-image-1689.jpg" 
+              alt="Spread through over World" 
+              className="w-full h-auto rounded-[1rem] shadow-2xl"
+              referrerPolicy="no-referrer"
+            />
+          </motion.div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-40 relative overflow-hidden">
+        <section className="py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-premium-gold opacity-5 blur-[120px]"></div>
           <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-12 uppercase tracking-tighter">Ready to Create Impact?</h2>
-            <a href="/contact" className="group relative inline-flex items-center gap-4 px-16 py-8 bg-white text-black font-black rounded-full hover:bg-premium-gold transition-all hover:scale-105 active:scale-95 shadow-2xl">
-              <span className="text-2xl uppercase tracking-widest">Start Project</span>
-              <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 uppercase tracking-tighter">Ready to Create Impact?</h2>
+            <a href="/contact" className="group relative inline-flex items-center gap-3 px-12 py-6 bg-white text-black font-black rounded-full hover:bg-premium-gold transition-all hover:scale-105 active:scale-95 shadow-2xl">
+              <span className="text-xl uppercase tracking-widest">Start Project</span>
+              <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
             </a>
           </div>
         </section>
@@ -431,12 +456,12 @@ export default function Home() {
       </AnimatePresence>
 
       <style>{`
-        @keyframes marquee-normal {
+        @keyframes marquee-slow {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        .animate-marquee-normal {
-          animation: marquee-normal 20s linear infinite;
+        .animate-marquee-slow {
+          animation: marquee-slow 35s linear infinite;
         }
         @keyframes shimmer {
           0% { background-position: -200% 0; }
