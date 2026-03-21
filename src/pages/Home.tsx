@@ -16,7 +16,7 @@ export default function Home() {
   };
 
   const handleAIPlan = async () => {
-    if (!plannerInput.trim()) return;
+    if (!plannerInput.trim() || isPlanning) return;
     setIsPlanning(true);
     try {
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
@@ -39,7 +39,13 @@ export default function Home() {
       setAiPlan(response.text);
     } catch (error: any) {
       console.error("AI Planner Error:", error);
-      setAiPlan(`Error generating plan: ${error.message || "Please try again."}`);
+      let errorMessage = "Please try again.";
+      if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+        errorMessage = "The AI is currently busy (Rate Limit Reached). Please wait a minute and try again.";
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      setAiPlan(`Error: ${errorMessage}`);
     }
     setIsPlanning(false);
   };

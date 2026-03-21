@@ -35,7 +35,8 @@ export default function Header() {
 
   // AI Suggestion as you type
   useEffect(() => {
-    if (!isSearchOpen || !searchQuery.trim()) {
+    // Only trigger if search is open, query is at least 3 characters, and not already searching
+    if (!isSearchOpen || searchQuery.trim().length < 3) {
       setAiResponse('');
       return;
     }
@@ -59,12 +60,16 @@ export default function Header() {
           Provide a very brief (1-2 sentences) suggestion or answer for the user's current search query: "${searchQuery}"`,
         });
         setAiResponse(response.text || "");
-      } catch (error) {
+      } catch (error: any) {
         console.error("AI Suggestion Error:", error);
+        // Don't show error for background suggestions to avoid annoying the user
+        if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+          setAiResponse(""); // Just clear it if quota hit
+        }
       } finally {
         setIsSearching(false);
       }
-    }, 600); // 600ms debounce
+    }, 1000); // Increased debounce to 1000ms to save quota
 
     return () => {
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
@@ -93,7 +98,13 @@ export default function Header() {
       setAiResponse(response.text || "I couldn't find an answer to that.");
     } catch (error: any) {
       console.error("AI Search Error:", error);
-      setAiResponse(`Error: ${error.message || "I encountered an error while searching with AI."}`);
+      let errorMessage = "I encountered an error while searching with AI.";
+      if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+        errorMessage = "AI search is temporarily unavailable due to high usage. Please try again in a minute.";
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      setAiResponse(`Error: ${errorMessage}`);
     }
     setIsSearching(false);
   };
