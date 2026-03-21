@@ -26,25 +26,31 @@ export default function Home() {
 
       const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-3.1-pro-preview",
         contents: `You are an expert project planner for "Walt Designs & Studio". 
         Create a detailed step-by-step digital project plan for: "${plannerInput}". 
+        Include sections for: Strategy, Design, Development, and Launch.
         Be professional, structured, and helpful.`,
       });
       
-      if (!response.text) {
-        throw new Error("No response received from AI.");
+      const text = response.text;
+      if (!text) {
+        throw new Error("The AI was unable to generate a plan for this input. Please try a more detailed description.");
       }
       
-      setAiPlan(response.text);
+      setAiPlan(text);
     } catch (error: any) {
       console.error("AI Planner Error:", error);
-      let errorMessage = "Please try again.";
+      let errorMessage = "An unexpected error occurred. Please try again later.";
+      
       if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
         errorMessage = "The AI is currently busy (Rate Limit Reached). Please wait a minute and try again.";
+      } else if (error.message?.includes("API_KEY_INVALID")) {
+        errorMessage = "Invalid API Key. Please check your Gemini API key configuration.";
       } else if (error.message) {
         errorMessage = error.message;
       }
+      
       setAiPlan(`Error: ${errorMessage}`);
     }
     setIsPlanning(false);
@@ -68,6 +74,27 @@ export default function Home() {
       desc: "Thumbnails, posters, and social media assets that pop.",
       icon: <ImageIcon className="text-premium-gold" />,
       img: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800"
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Rajesh Kumar",
+      role: "CEO, TechFlow",
+      content: "Walt Designs transformed our online presence. The AI-optimized design is incredibly fast and intuitive.",
+      rating: 5
+    },
+    {
+      name: "Priya Sharma",
+      role: "Marketing Director, Bloom",
+      content: "The branding assets are top-notch. Our social media engagement has doubled since we started working with them.",
+      rating: 5
+    },
+    {
+      name: "Ankit Verma",
+      role: "Freelance Developer",
+      content: "The ATS-friendly resume I got from Walt Designs helped me land my dream job at a top tech firm. Highly recommended!",
+      rating: 5
     }
   ];
 
@@ -276,6 +303,46 @@ export default function Home() {
                   </motion.div>
                 )}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="py-32 bg-[#1a0000] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#d4af37 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">What Our Clients Say</h2>
+              <p className="text-premium-gold text-lg uppercase tracking-widest font-bold">Real feedback from real success stories</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((t, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="bg-[#2a0000] border border-white/5 p-8 rounded-[2rem] hover:border-premium-gold/20 transition-all group"
+                >
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} size={16} className="fill-premium-gold text-premium-gold" />
+                    ))}
+                  </div>
+                  <p className="text-white/80 text-lg mb-8 italic leading-relaxed">"{t.content}"</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-premium-gold to-yellow-600 flex items-center justify-center text-black font-black text-xl">
+                      {t.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold uppercase tracking-tight">{t.name}</h4>
+                      <p className="text-white/40 text-xs uppercase tracking-widest">{t.role}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
