@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Globe, FileText, Layout, Image as ImageIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 export default function Home() {
   const features = [
@@ -8,19 +7,19 @@ export default function Home() {
       title: "AI Optimized Web Design",
       desc: "Websites built with the latest AI tech for speed and conversion.",
       icon: <Globe className="text-premium-gold" />,
-      img: "https://picsum.photos/seed/web/800/600"
+      img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Professional Resume/CV",
       desc: "Stand out from the crowd with premium, ATS-friendly designs.",
       icon: <FileText className="text-premium-gold" />,
-      img: "https://picsum.photos/seed/resume/800/600"
+      img: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Digital Branding",
       desc: "Thumbnails, posters, and social media assets that pop.",
       icon: <ImageIcon className="text-premium-gold" />,
-      img: "https://picsum.photos/seed/design/800/600"
+      img: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
@@ -29,11 +28,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-dark-teal via-dark-teal/90 to-dark-teal"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-dark-teal via-dark-teal/80 to-dark-teal"></div>
+          {/* Digital Background Pattern */}
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#d4af37 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
           <img 
-            src="https://picsum.photos/seed/studio/1920/1080?blur=2" 
-            className="w-full h-full object-cover opacity-30"
-            alt="Hero Background"
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1920" 
+            className="w-full h-full object-cover opacity-40 mix-blend-overlay"
+            alt="Digital Tech Background"
             referrerPolicy="no-referrer"
           />
         </div>
@@ -52,12 +53,12 @@ export default function Home() {
               Walt Designs & Studio specializes in AI-optimized web solutions, premium branding, and professional documentation. We don't just design; we create impact.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/services" className="btn-primary flex items-center gap-2 group">
+              <a href="/services.html" className="btn-primary flex items-center gap-2 group">
                 Explore Services <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link to="/contact" className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/5 transition-all font-semibold">
+              </a>
+              <a href="/contact.html" className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/5 transition-all font-semibold">
                 Contact Founder
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -105,9 +106,9 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-8 italic">"Design is the silent ambassador of your brand."</h2>
           <p className="text-premium-gold font-mono tracking-widest uppercase mb-10">Start your journey with us today</p>
-          <Link to="/enquiry" className="btn-primary">
+          <a href="/enquiry.html" className="btn-primary">
             Get a Quote
-          </Link>
+          </a>
         </div>
       </section>
     </div>

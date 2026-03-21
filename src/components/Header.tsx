@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
@@ -7,17 +6,17 @@ export default function Header() {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Enquiry Us', path: '/enquiry' },
-    { name: 'Contact Us', path: '/contact' },
-    { name: 'About Us', path: '/about' },
+    { name: 'Services', path: '/services.html' },
+    { name: 'Enquiry Us', path: '/enquiry.html' },
+    { name: 'Contact Us', path: '/contact.html' },
+    { name: 'About Us', path: '/about.html' },
   ];
 
   return (
     <header className="bg-dark-red sticky top-0 z-50 shadow-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <Link to="/" className="flex items-center space-x-3">
+          <a href="/" className="flex items-center space-x-3">
             <img 
               src="https://i.ibb.co/WNZCQtTR/IMG-20260312-041840.jpg" 
               alt="Walt Designs & Studio Logo" 
@@ -27,18 +26,18 @@ export default function Header() {
             <span className="text-xl font-bold tracking-tighter text-white uppercase">
               Walt Designs <span className="text-premium-gold">&</span> Studio
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
-              <Link 
+              <a 
                 key={link.name} 
-                to={link.path} 
+                href={link.path} 
                 className="text-white/90 hover:text-premium-gold font-medium transition-colors text-sm uppercase tracking-widest"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -59,14 +58,14 @@ export default function Header() {
         <div className="md:hidden bg-dark-red border-t border-white/10">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.name}
-                to={link.path}
+                href={link.path}
                 onClick={() => setIsOpen(false)}
                 className="block px-3 py-4 text-white hover:bg-red-900 rounded-md text-base font-medium uppercase tracking-widest"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
