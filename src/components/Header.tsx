@@ -97,51 +97,60 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-[#5c2a2a] sticky top-0 z-50 shadow-2xl animate-header-pulse">
+      <header className="bg-[#1a0033] sticky top-0 z-50 shadow-2xl animate-header-pulse border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <a href="/" className="flex items-center space-x-3">
-              <img 
-                src="https://i.ibb.co/WNZCQtTR/IMG-20260312-041840.jpg" 
-                alt="Walt Designs & Studio Logo" 
-                className="h-12 w-12 rounded-full object-cover border-2 border-premium-gold shadow-lg"
-                referrerPolicy="no-referrer"
-              />
+            <a href="/" className="flex items-center space-x-3 group">
+              <div className="relative">
+                <div className="absolute -inset-1 bg-premium-gold rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+                <img 
+                  src="https://i.ibb.co/WNZCQtTR/IMG-20260312-041840.jpg" 
+                  alt="Walt Designs & Studio Logo" 
+                  className="relative h-12 w-12 rounded-full object-cover border-2 border-premium-gold shadow-lg"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
               <span className="text-xl font-bold tracking-tighter text-white uppercase">
                 Walt Designs <span className="text-premium-gold">&</span> Studio
               </span>
             </a>
 
-            {/* Desktop Menu */}
-            <nav className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.path} 
-                  className="text-white hover:text-premium-gold font-bold transition-colors text-sm uppercase tracking-widest"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <button 
-                onClick={() => setIsSearchOpen(true)}
-                className="text-white hover:text-premium-gold transition-colors p-2"
-              >
-                <Search size={22} />
-              </button>
-            </nav>
+            {/* Desktop Menu & Search */}
+            <div className="hidden md:flex items-center space-x-8">
+              <div className="relative group">
+                <input 
+                  type="text" 
+                  placeholder="Search..." 
+                  onClick={() => setIsSearchOpen(true)}
+                  readOnly
+                  className="bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-sm text-white focus:outline-none focus:border-premium-gold transition-all cursor-pointer w-48 group-hover:w-64"
+                />
+                <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 group-hover:text-premium-gold transition-colors" />
+              </div>
+              <nav className="flex items-center space-x-8">
+                {navLinks.map((link) => (
+                  <a 
+                    key={link.name} 
+                    href={link.path} 
+                    className="text-white hover:text-premium-gold font-bold transition-colors text-sm uppercase tracking-widest"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </nav>
+            </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-4">
               <button 
                 onClick={() => setIsSearchOpen(true)}
-                className="text-white p-2"
+                className="text-white p-2 hover:text-premium-gold transition-colors"
               >
                 <Search size={24} />
               </button>
               <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-white p-2"
+                className="text-white p-2 hover:text-premium-gold transition-colors"
               >
                 {isOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -151,14 +160,14 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-[#5c2a2a] border-t border-white/10">
+          <div className="md:hidden bg-[#1a0033] border-t border-white/10 animate-in slide-in-from-top duration-300">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.path}
                   onClick={() => setIsOpen(false)}
-                  className="block px-3 py-4 text-white hover:bg-black/20 rounded-md text-base font-medium uppercase tracking-widest"
+                  className="block px-3 py-4 text-white hover:bg-white/5 rounded-md text-base font-medium uppercase tracking-widest transition-colors"
                 >
                   {link.name}
                 </a>
@@ -167,26 +176,6 @@ export default function Header() {
           </div>
         )}
       </header>
-
-      {/* Marquee - Simplified and slightly faster */}
-      <div className="bg-[#FFFF00] text-[#8B0000] py-3 overflow-hidden whitespace-nowrap relative z-[40] border-b-2 border-black/20 shadow-inner">
-        <div className="flex animate-marquee-normal">
-          <div className="flex shrink-0 items-center">
-            {[...Array(10)].map((_, i) => (
-              <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
-                ✨ Web Designing at Rs.1299/- only ✨
-              </span>
-            ))}
-          </div>
-          <div className="flex shrink-0 items-center">
-            {[...Array(10)].map((_, i) => (
-              <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
-                ✨ Web Designing at Rs.1299/- only ✨
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Search Overlay */}
       {isSearchOpen && (
@@ -273,8 +262,8 @@ export default function Header() {
           100% { transform: translateX(-50%); }
         }
         @keyframes header-pulse {
-          0%, 100% { background-color: #5c2a2a; }
-          50% { background-color: #3d1a1a; }
+          0%, 100% { background-color: #1a0033; }
+          50% { background-color: #0d001a; }
         }
         .animate-marquee-normal {
           animation: marquee-normal 20s linear infinite;

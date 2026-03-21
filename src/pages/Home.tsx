@@ -56,140 +56,141 @@ export default function Home() {
   ];
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-[#2a0000]">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-20">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-dark-teal via-dark-teal/80 to-dark-teal"></div>
-          {/* Digital Background Pattern */}
-          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#d4af37 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
-          <img 
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1920" 
-            className="w-full h-full object-cover opacity-40 mix-blend-overlay"
-            alt="Digital Tech Background"
-            referrerPolicy="no-referrer"
-          />
+      <section className="relative min-h-screen flex flex-col pt-20">
+        {/* Marquee in Hero */}
+        <div className="bg-[#FFFF00] text-[#8B0000] py-3 overflow-hidden whitespace-nowrap relative z-[40] border-b-2 border-black/20 shadow-inner">
+          <div className="flex animate-marquee-normal">
+            <div className="flex shrink-0 items-center">
+              {[...Array(10)].map((_, i) => (
+                <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
+                  ✨ Web Designing at Rs.1299/- only ✨
+                </span>
+              ))}
+            </div>
+            <div className="flex shrink-0 items-center">
+              {[...Array(10)].map((_, i) => (
+                <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
+                  ✨ Web Designing at Rs.1299/- only ✨
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <div className="flex items-center gap-2 mb-6 bg-black/30 w-fit px-4 py-2 rounded-full border border-white/10">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
-              </span>
-              <span className="text-white text-sm font-bold tracking-widest uppercase">Since 2026 in business</span>
-            </div>
+        <div className="flex-grow flex items-center relative">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#2a0000] via-[#2a0000]/80 to-[#2a0000]"></div>
+            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#d4af37 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
+          </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-              Elevate Your <span className="text-premium-gold">Digital Presence</span> With Precision.
-            </h1>
-
-            <div className="mb-8 relative inline-block group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-premium-gold via-yellow-400 to-premium-gold rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-              <div className="relative px-6 py-3 bg-gradient-to-r from-red-600 to-orange-500 rounded-lg leading-none flex items-center gap-4">
-                <span className="text-2xl">🌸</span>
-                <span className="flex items-center space-x-5 divide-x divide-white/20">
-                  <span className="flex items-center gap-2">
-                    <Sparkles className="text-white animate-pulse" />
-                    <span className="text-white font-black uppercase tracking-widest text-lg">
-                      Navratri Festive offer <span className="inline-block animate-bounce-subtle text-yellow-300">30%</span> off
-                    </span>
-                  </span>
-                  <span className="pl-6 text-white uppercase font-black text-sm animate-pulse-scale">Limited Time!</span>
-                </span>
-                <span className="text-2xl">🌼</span>
-              </div>
-            </div>
-
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-              Walt Designs & Studio specializes in AI-optimized web solutions, premium branding, and professional documentation. We don't just design; we create impact.
-            </p>
-            <div className="flex flex-wrap gap-4 mb-12">
-              <a href="/services.html" className="btn-primary flex items-center gap-2 group">
-                Explore Services <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href="/contact.html" className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/5 transition-all font-semibold">
-                Contact Founder
-              </a>
-            </div>
-
-            {/* Stats Section at Hero Ending */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
             <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="flex flex-wrap gap-6 md:gap-12 pt-8 border-t border-white/10"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center md:text-left"
             >
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-premium-gold">50+</span>
-                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Projects</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-premium-gold">India</span>
-                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Available Nationwide</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-premium-gold">100%</span>
-                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Happy Clients</span>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1">
-                  <span className="text-2xl font-black text-premium-gold">4.3</span>
-                  <Star size={16} className="text-premium-gold fill-premium-gold" />
+              {/* Offer Text */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="mb-6 inline-block"
+              >
+                <div className="bg-gradient-to-r from-premium-gold to-yellow-500 text-black px-6 py-2 rounded-full font-black uppercase tracking-widest text-sm shadow-xl animate-pulse">
+                  Get a website just at Rs.1299/- + 30% off
                 </div>
-                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Star Rating</span>
+              </motion.div>
+
+              {/* Since 2026 Badge */}
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-8">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                </span>
+                <span className="text-white/80 text-xs sm:text-sm font-bold tracking-widest uppercase">Since 2026 in business</span>
+              </div>
+
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black leading-tight mb-8 text-white tracking-tighter animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                Elevate Your <br />
+                <span className="text-premium-gold drop-shadow-[0_5px_15px_rgba(212,175,55,0.3)]">Digital Presence</span> <br />
+                With Precision.
+              </h1>
+
+              <p className="text-lg sm:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl mx-auto md:mx-0 font-medium">
+                Walt Designs & Studio specializes in AI-optimized web solutions, premium branding, and professional documentation. We don't just design; we create impact.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
+                <a 
+                  href="/services.html" 
+                  className="group relative px-10 py-5 bg-premium-gold text-black font-black rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-premium-gold/20"
+                >
+                  <span className="relative z-10 flex items-center gap-3 text-xl uppercase tracking-widest">
+                    Explore Services <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                </a>
+                <a 
+                  href="/contact.html" 
+                  className="text-white font-bold uppercase tracking-widest hover:text-premium-gold transition-colors border-b-2 border-white/20 hover:border-premium-gold py-2"
+                >
+                  Contact Founder
+                </a>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Dark Purple to Dark Magenta Animated Background Wrapper */}
-      <div className="animate-purple-magenta-pulse bg-[#2d004d]">
+      {/* Content Wrapper */}
+      <div className="bg-[#1a0000]">
         {/* Quick Services Section */}
-        <section className="py-24">
+        <section className="py-32 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Core Expertise</h2>
-              <div className="h-1 w-20 bg-premium-gold mx-auto"></div>
+            <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+              <div className="max-w-2xl">
+                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">Our Core Expertise</h2>
+                <p className="text-white/40 text-lg uppercase tracking-widest font-bold">Crafting digital excellence with AI precision</p>
+              </div>
+              <div className="h-px flex-grow bg-white/10 mb-4 hidden md:block"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {features.map((f, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.2 }}
                   onClick={() => openEnquiryModal(f.title)}
-                  className="glass-card p-8 group bg-black/40 border-white/10 relative overflow-hidden cursor-pointer hover:border-premium-gold/50 transition-all"
+                  className="group relative bg-[#2a0000] border border-white/5 p-10 rounded-[2.5rem] cursor-pointer hover:border-premium-gold/30 transition-all duration-500 overflow-hidden"
                 >
-                  {/* Balloon Decoration */}
-                  <div className="absolute -top-4 -right-4 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                    <PartyPopper size={64} className="text-premium-gold rotate-12" />
+                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
+                    <Sparkles size={120} className="text-premium-gold" />
                   </div>
                   
-                  <div className="mb-6 p-3 bg-white/5 rounded-xl w-fit group-hover:bg-premium-gold/20 transition-colors">
+                  <div className="mb-10 p-4 bg-white/5 rounded-2xl w-fit group-hover:bg-premium-gold group-hover:text-black transition-all duration-500">
                     {f.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-white">{f.title}</h3>
-                  <p className="text-gray-300 mb-6 text-sm leading-relaxed">{f.desc}</p>
-                  <div className="overflow-hidden rounded-lg mb-6">
+                  <h3 className="text-2xl font-black mb-4 text-white uppercase tracking-tight">{f.title}</h3>
+                  <p className="text-white/60 mb-8 text-base leading-relaxed font-medium">{f.desc}</p>
+                  
+                  <div className="relative overflow-hidden rounded-3xl mb-8 aspect-video">
                     <img 
                       src={f.img} 
                       alt={f.title} 
-                      className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       referrerPolicy="no-referrer"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2a0000] to-transparent opacity-60"></div>
                   </div>
-                  <div className="flex items-center gap-2 text-premium-gold font-bold text-xs uppercase tracking-widest group-hover:gap-4 transition-all">
-                    Enquire Now <ArrowRight size={14} />
+
+                  <div className="flex items-center gap-3 text-premium-gold font-black text-sm uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                    Enquire Now <ArrowRight size={18} />
                   </div>
                 </motion.div>
               ))}
@@ -198,48 +199,46 @@ export default function Home() {
         </section>
 
         {/* AI Project Planner Section */}
-        <section className="py-24 border-t border-white/5">
+        <section className="py-32 border-t border-white/5 bg-[#0d0000]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="glass-card p-10 bg-black/60 border-premium-gold/30">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-premium-gold/20 rounded-2xl">
-                  <Calendar className="text-premium-gold" size={32} />
+            <div className="bg-[#1a0000] p-12 rounded-[3rem] border border-white/5 shadow-2xl">
+              <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+                <div className="p-5 bg-premium-gold rounded-[2rem] text-black shadow-xl shadow-premium-gold/20">
+                  <Calendar size={40} />
                 </div>
-                <div>
-                  <h2 className="text-3xl font-bold text-white">AI Project Planner</h2>
-                  <p className="text-gray-400 text-sm">Let our AI architect your next big idea</p>
+                <div className="text-center md:text-left">
+                  <h2 className="text-4xl font-black text-white uppercase tracking-tight mb-2">AI Project Planner</h2>
+                  <p className="text-white/40 font-bold uppercase tracking-widest text-sm">Architect your vision with intelligence</p>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="relative">
-                  <textarea 
-                    value={plannerInput}
-                    onChange={(e) => setPlannerInput(e.target.value)}
-                    placeholder="Describe your project (e.g., 'A modern e-commerce site for a fashion brand')..."
-                    className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-premium-gold transition-all min-h-[120px]"
-                  />
-                </div>
+              <div className="space-y-8">
+                <textarea 
+                  value={plannerInput}
+                  onChange={(e) => setPlannerInput(e.target.value)}
+                  placeholder="Describe your project vision..."
+                  className="w-full bg-white/5 border-2 border-white/10 rounded-3xl px-8 py-6 text-white focus:outline-none focus:border-premium-gold transition-all min-h-[160px] text-lg font-medium"
+                />
                 <button 
                   onClick={handleAIPlan}
                   disabled={isPlanning}
-                  className="w-full py-4 bg-premium-gold text-black font-bold rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition-all disabled:opacity-50"
+                  className="w-full py-6 bg-premium-gold text-black font-black rounded-3xl flex items-center justify-center gap-4 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 text-xl uppercase tracking-widest shadow-xl shadow-premium-gold/20"
                 >
                   {isPlanning ? <Sparkles className="animate-spin" /> : <Sparkles />}
-                  {isPlanning ? 'Architecting Plan...' : 'Generate AI Project Plan'}
+                  {isPlanning ? 'Architecting...' : 'Generate Roadmap'}
                 </button>
 
                 {aiPlan && (
                   <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-8 p-6 bg-white/5 rounded-2xl border border-white/10"
+                    className="mt-12 p-10 bg-white/5 rounded-[2rem] border border-white/10"
                   >
-                    <div className="flex items-center gap-2 mb-4 text-premium-gold font-bold uppercase tracking-widest text-xs">
-                      <Layout size={16} />
-                      AI Generated Roadmap
+                    <div className="flex items-center gap-3 mb-6 text-premium-gold font-black uppercase tracking-widest text-sm">
+                      <Layout size={20} />
+                      AI Generated Strategy
                     </div>
-                    <div className="text-gray-200 leading-relaxed whitespace-pre-wrap prose prose-invert max-w-none">
+                    <div className="text-white/80 leading-relaxed whitespace-pre-wrap prose prose-invert max-w-none font-medium">
                       {aiPlan}
                     </div>
                   </motion.div>
@@ -250,11 +249,13 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-black/80">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <p className="text-premium-gold font-mono tracking-widest uppercase mb-10">Start your journey with us today</p>
-            <a href="/contact.html" className="btn-primary text-2xl px-12 py-6">
-              Contact Us
+        <section className="py-40 relative overflow-hidden">
+          <div className="absolute inset-0 bg-premium-gold opacity-5 blur-[120px]"></div>
+          <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
+            <h2 className="text-5xl md:text-7xl font-black text-white mb-12 uppercase tracking-tighter">Ready to Create Impact?</h2>
+            <a href="/contact.html" className="group relative inline-flex items-center gap-4 px-16 py-8 bg-white text-black font-black rounded-full hover:bg-premium-gold transition-all hover:scale-105 active:scale-95 shadow-2xl">
+              <span className="text-2xl uppercase tracking-widest">Start Project</span>
+              <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
             </a>
           </div>
         </section>
@@ -335,6 +336,13 @@ export default function Home() {
       </AnimatePresence>
 
       <style>{`
+        @keyframes marquee-normal {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee-normal {
+          animation: marquee-normal 20s linear infinite;
+        }
         @keyframes purple-magenta-pulse {
           0%, 100% { background-color: #2d004d; }
           50% { background-color: #4d004d; }
