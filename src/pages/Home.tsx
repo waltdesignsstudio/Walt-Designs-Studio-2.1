@@ -19,14 +19,14 @@ export default function Home() {
     if (!plannerInput.trim() || isPlanning) return;
     setIsPlanning(true);
     try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || "AIzaSyAYcAdYrGPJpluc86K7HWZ2hVw1IKySvWY";
       if (!apiKey) {
         throw new Error("Gemini API Key is missing. Please ensure it's set in your environment variables.");
       }
 
       const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-pro-preview",
+        model: "gemini-3-flash-preview",
         contents: `You are an expert project planner for "Walt Designs & Studio". 
         Create a detailed step-by-step digital project plan for: "${plannerInput}". 
         Include sections for: Strategy, Design, Development, and Launch.

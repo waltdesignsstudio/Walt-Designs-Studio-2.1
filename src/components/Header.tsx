@@ -46,7 +46,7 @@ export default function Header() {
     debounceTimer.current = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || "AIzaSyAYcAdYrGPJpluc86K7HWZ2hVw1IKySvWY";
         if (!apiKey) {
           throw new Error("API Key missing");
         }
@@ -69,7 +69,7 @@ export default function Header() {
       } finally {
         setIsSearching(false);
       }
-    }, 1000); // Increased debounce to 1000ms to save quota
+    }, 1500); // Increased debounce to 1500ms to save quota
 
     return () => {
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
