@@ -1,5 +1,6 @@
 import { Menu, X, Search, Sparkles, Globe, ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { GoogleGenAI } from "@google/genai";
 
 export default function Header() {
@@ -13,18 +14,18 @@ export default function Header() {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services.html' },
-    { name: 'Contact Us', path: '/contact.html' },
-    { name: 'About Us', path: '/about.html' },
+    { name: 'Services', path: '/services' },
+    { name: 'Contact Us', path: '/contact' },
+    { name: 'About Us', path: '/about' },
   ];
 
   const siteContent = [
     { title: 'Home', path: '/', description: 'Welcome to Walt Designs & Studio. We create premium digital experiences.' },
-    { title: 'Services', path: '/services.html', description: 'AI Optimized Web Design, Resume/CV, License Forms, Thumbnails & Postures.' },
-    { title: 'Contact Us', path: '/contact.html', description: 'Get in touch with founder Priyanshu Kumar. Enquiry form and contact details.' },
-    { title: 'About Us', path: '/about.html', description: 'Learn about Walt Designs & Studio and our mission to elevate digital presence.' },
-    { title: 'Web Design', path: '/services.html', description: 'AI optimized web designing and publishing with custom domains.' },
-    { title: 'Resume/CV', path: '/services.html', description: 'Professional ATS-friendly resume and CV design services.' },
+    { title: 'Services', path: '/services', description: 'AI Optimized Web Design, Resume/CV, License Forms, Thumbnails & Postures.' },
+    { title: 'Contact Us', path: '/contact', description: 'Get in touch with founder Priyanshu Kumar. Enquiry form and contact details.' },
+    { title: 'About Us', path: '/about', description: 'Learn about Walt Designs & Studio and our mission to elevate digital presence.' },
+    { title: 'Web Design', path: '/services', description: 'AI optimized web designing and publishing with custom domains.' },
+    { title: 'Resume/CV', path: '/services', description: 'Professional ATS-friendly resume and CV design services.' },
   ];
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function Header() {
         const response = await ai.models.generateContent({
           model: "gemini-3-flash-preview",
           contents: `You are an assistant for "Walt Designs & Studio". 
-          The company provides: AI Optimized Web Design (Rs. 1299/- with domain), Resume/CV creation, License & Register forms, Thumbnails & Postures.
+          The company provides: AI Optimized Web Design (Rs. 3999/- with domain), Resume/CV creation, License & Register forms, Thumbnails & Postures.
           Founder: Priyanshu Kumar. Location: New Delhi, India.
           Provide a very brief (1-2 sentences) suggestion or answer for the user's current search query: "${searchQuery}"`,
         });
@@ -76,7 +77,7 @@ export default function Header() {
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: `You are an assistant for "Walt Designs & Studio". 
-        The company provides: AI Optimized Web Design (Rs. 1299/- with domain), Resume/CV creation, License & Register forms, Thumbnails & Postures.
+        The company provides: AI Optimized Web Design (Rs. 3999/- with domain), Resume/CV creation, License & Register forms, Thumbnails & Postures.
         Founder: Priyanshu Kumar. Location: New Delhi, India.
         User question: ${searchQuery}`,
       });
@@ -100,7 +101,7 @@ export default function Header() {
       <header className="bg-[#1a0033] sticky top-0 z-50 shadow-2xl animate-header-pulse border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <a href="/" className="flex items-center space-x-3 group">
+            <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 <div className="absolute -inset-1 bg-premium-gold rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
                 <img 
@@ -113,7 +114,7 @@ export default function Header() {
               <span className="text-xl font-bold tracking-tighter text-white uppercase">
                 Walt Designs <span className="text-premium-gold">&</span> Studio
               </span>
-            </a>
+            </Link>
 
             {/* Desktop Menu & Search */}
             <div className="hidden md:flex items-center space-x-8">
@@ -129,13 +130,13 @@ export default function Header() {
               </div>
               <nav className="flex items-center space-x-8">
                 {navLinks.map((link) => (
-                  <a 
+                  <Link 
                     key={link.name} 
-                    href={link.path} 
+                    to={link.path} 
                     className="text-white hover:text-premium-gold font-bold transition-colors text-sm uppercase tracking-widest"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -163,14 +164,14 @@ export default function Header() {
           <div className="md:hidden bg-[#1a0033] border-t border-white/10 animate-in slide-in-from-top duration-300">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.path}
+                  to={link.path}
                   onClick={() => setIsOpen(false)}
                   className="block px-3 py-4 text-white hover:bg-white/5 rounded-md text-base font-medium uppercase tracking-widest transition-colors"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -236,14 +237,15 @@ export default function Header() {
                 <div className="space-y-4">
                   <p className="text-white/40 uppercase tracking-widest text-xs font-bold mb-4">Quick Links ({normalResults.length})</p>
                   {normalResults.length > 0 ? normalResults.map((result, i) => (
-                    <a 
+                    <Link 
                       key={i}
-                      href={result.path}
+                      to={result.path}
+                      onClick={() => setIsSearchOpen(false)}
                       className="block glass-card p-6 hover:border-premium-gold/50 transition-all group"
                     >
                       <h3 className="text-xl font-bold mb-2 group-hover:text-premium-gold transition-colors">{result.title}</h3>
                       <p className="text-gray-400 text-sm">{result.description}</p>
-                    </a>
+                    </Link>
                   )) : !isSearching && !aiResponse && (
                     <div className="text-center py-12 text-white/40 italic">
                       No matching pages found for "{searchQuery}"

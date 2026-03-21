@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Globe, FileText, Layout, Image as ImageIcon, Sparkles, Calendar, PartyPopper, X, Star, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GoogleGenAI } from "@google/genai";
 
 export default function Home() {
@@ -58,60 +59,76 @@ export default function Home() {
   return (
     <div className="overflow-hidden bg-[#2a0000]">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col pt-20">
+      <section className="relative min-h-screen flex flex-col pt-0">
         {/* Marquee in Hero */}
         <div className="bg-[#FFFF00] text-[#8B0000] py-3 overflow-hidden whitespace-nowrap relative z-[40] border-b-2 border-black/20 shadow-inner">
           <div className="flex animate-marquee-normal">
             <div className="flex shrink-0 items-center">
               {[...Array(10)].map((_, i) => (
                 <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
-                  ✨ Web Designing at Rs.1299/- only ✨
+                  ✨ Web Designing at Rs.3999/- only ✨
                 </span>
               ))}
             </div>
             <div className="flex shrink-0 items-center">
               {[...Array(10)].map((_, i) => (
                 <span key={i} className="mx-8 font-black uppercase tracking-tighter text-lg italic drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)]">
-                  ✨ Web Designing at Rs.1299/- only ✨
+                  ✨ Web Designing at Rs.3999/- only ✨
                 </span>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="flex-grow flex items-center relative">
+        <div className="flex-1 flex flex-col relative">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-[#2a0000] via-[#2a0000]/80 to-[#2a0000]"></div>
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#d4af37 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+          {/* Navratri Wishing Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 py-4 text-center relative overflow-hidden border-b border-white/10 z-20"
+          >
+            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+            <div className="relative z-10 flex items-center justify-center gap-4">
+              <PartyPopper className="text-yellow-400 animate-bounce" size={20} />
+              <h2 className="text-white font-black uppercase tracking-[0.2em] text-xs sm:text-sm italic drop-shadow-lg">
+                ✨ Happy Navratri to All Our Valued Clients! ✨
+              </h2>
+              <PartyPopper className="text-yellow-400 animate-bounce" size={20} />
+            </div>
+          </motion.div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 pb-20 w-full">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-center md:text-left"
             >
-              {/* Offer Text */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="mb-6 inline-block"
-              >
-                <div className="bg-gradient-to-r from-premium-gold to-yellow-500 text-black px-6 py-2 rounded-full font-black uppercase tracking-widest text-sm shadow-xl animate-pulse">
-                  Get a website just at Rs.1299/- + 30% off
-                </div>
-              </motion.div>
-
               {/* Since 2026 Badge */}
-              <div className="flex items-center justify-center md:justify-start gap-2 mb-8">
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-6">
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
                 </span>
                 <span className="text-white/80 text-xs sm:text-sm font-bold tracking-widest uppercase">Since 2026 in business</span>
               </div>
+
+              {/* Offer Text */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="mb-8 inline-block"
+              >
+                <div className="bg-gradient-to-r from-premium-gold to-yellow-500 text-black px-6 py-2 rounded-full font-black uppercase tracking-widest text-sm shadow-xl animate-pulse">
+                  Get a website just at Rs.3999/- + 30% off
+                </div>
+              </motion.div>
 
               <h1 className="text-4xl sm:text-6xl md:text-8xl font-black leading-tight mb-8 text-white tracking-tighter animate-in fade-in slide-in-from-bottom-8 duration-1000">
                 Elevate Your <br />
@@ -124,21 +141,21 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
-                <a 
-                  href="/services.html" 
+                <Link 
+                  to="/services" 
                   className="group relative px-10 py-5 bg-premium-gold text-black font-black rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-premium-gold/20"
                 >
                   <span className="relative z-10 flex items-center gap-3 text-xl uppercase tracking-widest">
                     Explore Services <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                </a>
-                <a 
-                  href="/contact.html" 
+                </Link>
+                <Link 
+                  to="/contact" 
                   className="text-white font-bold uppercase tracking-widest hover:text-premium-gold transition-colors border-b-2 border-white/20 hover:border-premium-gold py-2"
                 >
                   Contact Founder
-                </a>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -253,10 +270,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-premium-gold opacity-5 blur-[120px]"></div>
           <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
             <h2 className="text-5xl md:text-7xl font-black text-white mb-12 uppercase tracking-tighter">Ready to Create Impact?</h2>
-            <a href="/contact.html" className="group relative inline-flex items-center gap-4 px-16 py-8 bg-white text-black font-black rounded-full hover:bg-premium-gold transition-all hover:scale-105 active:scale-95 shadow-2xl">
+            <Link to="/contact" className="group relative inline-flex items-center gap-4 px-16 py-8 bg-white text-black font-black rounded-full hover:bg-premium-gold transition-all hover:scale-105 active:scale-95 shadow-2xl">
               <span className="text-2xl uppercase tracking-widest">Start Project</span>
               <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
-            </a>
+            </Link>
           </div>
         </section>
       </div>
