@@ -1,12 +1,11 @@
 import { motion } from 'motion/react';
-import { Award, Users, Zap, Shield } from 'lucide-react';
+import { Award, Users, Zap, Shield, Sparkles, Globe, Cpu, Star } from 'lucide-react';
 
 export default function About() {
   const stats = [
-    { label: "Projects Completed", value: "150+" },
-    { label: "Happy Clients", value: "120+" },
-    { label: "Years Experience", value: "5+" },
-    { label: "AI Models Used", value: "10+" }
+    { label: "Projects Completed", value: "150+", icon: <Globe size={20} /> },
+    { label: "Happy Clients", value: "50+", icon: <Users size={20} /> },
+    { label: "AI Models Used", value: "10+", icon: <Cpu size={20} /> }
   ];
 
   const values = [
@@ -33,50 +32,64 @@ export default function About() {
   ];
 
   return (
-    <div className="bg-dark-teal min-h-screen">
+    <div className="bg-[#004d00] min-h-screen relative overflow-hidden">
+      {/* Floating Decorative Elements */}
+      <motion.div 
+        animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+        transition={{ duration: 5, repeat: Infinity }}
+        className="absolute top-20 left-10 opacity-10 text-white"
+      >
+        <Sparkles size={100} />
+      </motion.div>
+      <motion.div 
+        animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
+        transition={{ duration: 7, repeat: Infinity }}
+        className="absolute bottom-20 right-10 opacity-10 text-white"
+      >
+        <Star size={120} />
+      </motion.div>
+
       {/* About Hero */}
-      <section className="py-24 border-b border-white/5">
+      <section className="py-24 border-b border-white/5 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-8">About <span className="text-premium-gold">Walt Designs</span></h1>
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
                 Founded by <span className="text-white font-bold">Priyanshu Kumar</span>, Walt Designs & Studio is a New Delhi-based creative powerhouse dedicated to redefining digital standards.
               </p>
-              <p className="text-gray-400 leading-relaxed mb-10">
+              <p className="text-gray-400 leading-relaxed mb-16">
                 We believe that great design is a blend of art and technology. In an era dominated by AI, we harness its power to create websites that aren't just beautiful, but are optimized for the future of the web.
               </p>
-              <div className="grid grid-cols-2 gap-8">
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {stats.map((s, i) => (
-                  <div key={i}>
-                    <p className="text-3xl font-bold text-premium-gold">{s.value}</p>
-                    <p className="text-xs text-gray-500 uppercase tracking-widest">{s.label}</p>
-                  </div>
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="glass-card p-8 group hover:border-premium-gold/50 transition-all relative overflow-hidden"
+                  >
+                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                      {s.icon}
+                    </div>
+                    <p className="text-5xl font-bold text-premium-gold mb-2">{s.value}</p>
+                    <p className="text-sm text-gray-400 uppercase tracking-widest font-bold">{s.label}</p>
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="relative"
-            >
-              <div className="absolute -inset-4 bg-premium-gold/10 blur-2xl rounded-full"></div>
-              <img 
-                src="https://picsum.photos/seed/office/800/800" 
-                alt="Our Studio" 
-                className="relative z-10 rounded-3xl shadow-2xl border border-white/10"
-                referrerPolicy="no-referrer"
-              />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-24">
+      <section className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
@@ -91,9 +104,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-8 text-center"
+                className="glass-card p-8 text-center group hover:bg-white/5 transition-all"
               >
-                <div className="mb-6 p-4 bg-white/5 rounded-2xl w-fit mx-auto">
+                <div className="mb-6 p-4 bg-white/5 rounded-2xl w-fit mx-auto group-hover:bg-premium-gold/20 transition-colors">
                   {v.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{v.title}</h3>

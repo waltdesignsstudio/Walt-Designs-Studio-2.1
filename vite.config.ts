@@ -22,7 +22,6 @@ export default defineConfig(({mode}) => {
           services: path.resolve(__dirname, 'services.html'),
           about: path.resolve(__dirname, 'about.html'),
           contact: path.resolve(__dirname, 'contact.html'),
-          enquiry: path.resolve(__dirname, 'enquiry.html'),
         },
       },
     },

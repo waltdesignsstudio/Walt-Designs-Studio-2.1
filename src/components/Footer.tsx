@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-center text-gray-500 text-xs">
-          <p>© {new Date().getFullYear()} Walt Designs & Studio. All rights reserved. Founded by Priyanshu Kumar.</p>
+          <p>© {new Date().getFullYear()} Walt Designs & Studio. All rights reserved.</p>
         </div>
       </div>
     </footer>
