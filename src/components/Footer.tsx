@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin } from 'lucide-react
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-dark text-white pt-24 pb-12 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-brown-dark text-white pt-24 pb-12 border-t border-white/5 relative overflow-hidden">
       {/* Subtle texture or gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
       
@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/10 pt-12 text-center">
-          <p className="text-white text-sm uppercase tracking-[0.3em] font-black">
+          <p className="text-white/80 text-sm font-medium">
             © {new Date().getFullYear()} Walt Designs & Studio. All rights reserved.
           </p>
         </div>

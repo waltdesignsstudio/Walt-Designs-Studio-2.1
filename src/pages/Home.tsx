@@ -77,7 +77,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="overflow-hidden bg-navy-dark">
+    <div className="overflow-hidden bg-brown-dark">
       {/* Hero Section */}
       <section className="relative flex flex-col pt-0">
         {/* Marquee in Hero */}
@@ -86,14 +86,14 @@ export default function Home() {
             <div className="flex shrink-0 items-center min-w-full">
               {[...Array(8)].map((_, i) => (
                 <span key={i} className="mx-4 sm:mx-10 font-black uppercase tracking-tighter text-xs sm:text-base italic drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-                  ✨ Get AI optimized website for business just at Rs.3999+30% off ✨
+                  ✨ Get AI optimized website for business just at Rs.3,999/- ✨
                 </span>
               ))}
             </div>
             <div className="flex shrink-0 items-center min-w-full">
               {[...Array(8)].map((_, i) => (
                 <span key={i} className="mx-4 sm:mx-10 font-black uppercase tracking-tighter text-xs sm:text-base italic drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-                  ✨ Get AI optimized website for business just at Rs.3999+30% off ✨
+                  ✨ Get AI optimized website for business just at Rs.3,999/- ✨
                 </span>
               ))}
             </div>
@@ -102,25 +102,25 @@ export default function Home() {
 
         <div className="flex-1 flex flex-col relative">
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-navy-dark via-navy-dark/80 to-navy-dark"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-brown-dark via-brown-dark/80 to-brown-dark"></div>
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#d4af37 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
           </div>
 
-          {/* Navratri Wishing Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 py-2 text-center relative overflow-hidden border-b border-white/10 z-20"
-          >
-            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-            <div className="relative z-10 flex items-center justify-center gap-2">
-              <PartyPopper className="text-yellow-400 animate-bounce" size={14} />
-              <h2 className="text-white font-black uppercase tracking-[0.15em] text-[9px] sm:text-xs italic drop-shadow-lg">
-                ✨ Happy Navratri to All Our Valued Clients! ✨
-              </h2>
-              <PartyPopper className="text-yellow-400 animate-bounce" size={14} />
-            </div>
-          </motion.div>
+          {/* Banner Image */}
+          <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-2xl overflow-hidden border-2 border-premium-gold/30 shadow-2xl"
+            >
+              <img 
+                src="https://i.ibb.co/KpQ8J0px/Whats-App-Image-2026-04-05-at-22-04-35.jpg" 
+                alt="Walt Designs Banner" 
+                className="w-full h-auto object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-4 pb-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -144,10 +144,26 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="mb-6 inline-block"
+                  className="mb-8 text-left"
                 >
-                  <div className="bg-gradient-to-r from-premium-gold via-white to-premium-gold text-black px-6 py-2 rounded-full font-black uppercase tracking-widest text-[10px] sm:text-xs shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-shimmer bg-[length:200%_auto]">
-                    Get AI optimized website for business just at Rs.3999+30% off
+                  <div className="bg-black/40 backdrop-blur-md border border-premium-gold/30 p-6 rounded-2xl shadow-2xl">
+                    <ul className="space-y-2 mb-4">
+                      {[
+                        "(.in) Domain Included Free (1 Year) ✅",
+                        "1 Month Free Update/Changes by our team ✅",
+                        "24/7 Support ✅",
+                        "Visibility Increase ✅",
+                        "Customer Attractions ✅",
+                        "AI features website ✅"
+                      ].map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-white/90 text-sm font-bold">
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="text-premium-gold font-black text-2xl animate-pulse">
+                      just in Rs.3,999/-
+                    </div>
                   </div>
                 </motion.div>
 
@@ -208,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* Grow by Digital Section */}
-      <section className="py-12 bg-navy-dark relative overflow-hidden">
+      <section className="py-12 bg-brown-dark relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -247,7 +263,7 @@ export default function Home() {
       </section>
 
       {/* Content Wrapper */}
-      <div className="bg-navy-dark">
+      <div className="bg-brown-dark">
         {/* Quick Services Section */}
         <section className="py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -300,7 +316,7 @@ export default function Home() {
         </section>
 
         {/* AI Project Planner Section */}
-        <section className="py-20 relative overflow-hidden bg-navy-dark">
+        <section className="py-20 relative overflow-hidden bg-brown-dark">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">AI Project <span className="text-premium-gold">Planner</span></h2>
